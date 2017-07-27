@@ -1,2 +1,12 @@
-# gitbackup
-Bash script to backup all repositories in a specific github account
+#### Works with
+* Almost any linux based shell.
+* Cygwin shell on Windows.
+* Git Bash on Windows.
+
+#### Requirements
+* cURL
+* Some patience.
+
+#### Setup Instructions
+* If you are on linux, ensure that `gitbackup.sh` is chmodded to `755`.
+* Run `./gitbackup.sh`.
