@@ -1,6 +1,6 @@
 github_username="ameer1234567890"
 url_start="https://github.com/"
-curl -o repos.json https://api.github.com/users/$github_username/repos
+curl --progress-bar -o repos.json https://api.github.com/users/$github_username/repos
 repos="$(grep -Po '"full_name":.*?[^\\]",' repos.json | awk '{print $2}' | tr -d '"' | tr -d ',')"
 mkdir -p repos
 cd repos
