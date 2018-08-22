@@ -1,0 +1,8 @@
+sudo: false
+language: bash
+os:
+  - linux
+install:
+  - shellcheck --version
+script:
+  - shellcheck $TRAVIS_BUILD_DIR/gitbackup.sh
