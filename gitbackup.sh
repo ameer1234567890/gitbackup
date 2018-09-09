@@ -1,6 +1,19 @@
 #!/bin/sh
 github_username="ameer1234567890"
 url_start="https://github.com/"
+
+check_tools(){
+  tools="curl git"
+  for tool in $tools; do
+    if [ ! "$(command -v "$tool")" ]; then
+      printf "\e[1m%s\e[0m not found! Exiting....\n" "$tool"
+      exit 1
+    fi
+  done
+}
+
+check_tools
+
 echo "Grabbing list of repositories...."
 curl --progress-bar -o repos.json https://api.github.com/users/$github_username/repos
 repos="$(grep -Po '"full_name":.*?[^\\]",' repos.json | awk '{print $2}' | tr -d '"' | tr -d ',')"
