@@ -2,7 +2,7 @@
 github_username="ameer1234567890"
 url_start="https://github.com/"
 
-check_tools(){
+check_tools() {
   tools="curl git"
   for tool in $tools; do
     if [ ! "$(command -v "$tool")" ]; then
