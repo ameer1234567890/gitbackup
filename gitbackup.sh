@@ -24,13 +24,19 @@ for repo in $repos; do
   if [ ! -d "$repo_name" ]; then
     echo "Cloning new repository $repo_name...."
     git clone "$url_start$repo"
+    status="$?"
   else
     echo "$repo_name already exists! Pulling any remote changes...."
     cd "$repo_name" || exit
-    git pull
+    git pull --rebase
+    status="$?"
     cd ..
   fi
-  echo "Done!"
+  if [ "$status" != 0 ]; then
+    printf "[\e[91mERROR\e[0m] Something went wrong!"
+  else
+    printf "[\e[32mINFO\e[0m] Done!"
+  fi
   echo ""
 done
 cd ..
