@@ -36,3 +36,6 @@ done
 cd ..
 rm repos.json
 echo "All repositories backed up!"
+
+printf "Press enter to exit..."
+read -r
