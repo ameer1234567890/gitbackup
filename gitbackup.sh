@@ -42,7 +42,8 @@ cd ..
 rm repos.json
 exit_code_sum=$((exit_code_sum + $?))
 if [ "$exit_code_sum" != 0 ]; then
-  printf "[\e[91mERROR\e[0m] Something went wrong!"
+  printf "[\e[91mERROR\e[0m] Something went wrong! Errors: %s\n" "$exit_code_sum"
+  exit 1
 else
-  printf "[\e[32mINFO\e[0m] All repositories backed up!"
+  printf "[\e[32mINFO\e[0m] All repositories backed up!\n"
 fi
