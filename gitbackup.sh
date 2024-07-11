@@ -13,6 +13,7 @@ check_tools() {
   done
 }
 
+start_t=$(date +%s)
 check_tools
 
 cd "$(dirname "$0")" || exit
@@ -41,9 +42,12 @@ done
 cd ..
 rm repos.json
 exit_code_sum=$((exit_code_sum + $?))
+end_t=$(date +%s)
+run_t=$(expr "$end_t" - "$start_t")
+run_t=$(expr "$run_t" \* 1000)
 if [ "$exit_code_sum" != 0 ]; then
-  printf "[\e[91mERROR\e[0m] Something went wrong! Errors: %s\n" "$exit_code_sum"
+  curl -k "https://printer.lan:5001/api/push/dqSekPDUWh?status=down&msg=Error:+$exit_code_sum&ping=$run_t"
   exit 1
 else
-  printf "[\e[32mINFO\e[0m] All repositories backed up!\n"
+  curl -k "https://printer.lan:5001/api/push/dqSekPDUWh?status=up&msg=OK&ping=$run_t"
 fi
