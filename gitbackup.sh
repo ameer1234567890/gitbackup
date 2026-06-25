@@ -46,8 +46,8 @@ end_t=$(date +%s)
 run_t=$(expr "$end_t" - "$start_t")
 run_t=$(expr "$run_t" \* 1000)
 if [ "$exit_code_sum" != 0 ]; then
-  curl -k "https://printer.lan:5001/api/push/dqSekPDUWh?status=down&msg=Error:+$exit_code_sum&ping=$run_t"
+  curl -k "https://coconut.lan:5001/api/push/dqSekPDUWh?status=down&msg=Error:+$exit_code_sum&ping=$run_t"
   exit 1
 else
-  curl -k "https://printer.lan:5001/api/push/dqSekPDUWh?status=up&msg=OK&ping=$run_t"
+  curl -k "https://coconut.lan:5001/api/push/dqSekPDUWh?status=up&msg=OK&ping=$run_t"
 fi
